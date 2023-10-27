@@ -8,4 +8,6 @@ import com.anji.mock.wiremockdemo.entity.StudentMarks;
 @Repository
 public interface StudentMarksRepository extends JpaRepository<StudentMarks, Long>{
 
+	StudentMarks findByStudentStudentId(Long studentId);
+	
 }

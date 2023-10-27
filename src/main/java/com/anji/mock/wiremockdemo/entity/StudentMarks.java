@@ -26,10 +26,10 @@ public class StudentMarks {
 	@JoinColumn(name = "studentId")
 	private Student student;
 
-	private Integer maths;
+	private Double maths;
 
-	private Integer science;
+	private Double science;
 
-	private Integer english;
+	private Double english;
 
 }

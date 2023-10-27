@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anji.mock.wiremockdemo.entity.Student;
+import com.anji.mock.wiremockdemo.entity.StudentGrade;
+import com.anji.mock.wiremockdemo.service.StudentGradeService;
 import com.anji.mock.wiremockdemo.service.StudentService;
 
 @RestController
@@ -22,6 +25,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private StudentGradeService studentGradeService;
 
 	@GetMapping(value = "/student", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Student> getAllStudents() {
@@ -59,5 +65,15 @@ public class StudentController {
 	public void delete(@PathVariable Long rollNum) {
 		studentService.delete(rollNum);
 	}
+	
+	// Grade
+	
+	@GetMapping(value = "/grade", produces = MediaType.APPLICATION_JSON_VALUE)
+	public StudentGrade getGrade(@RequestParam Long studentId) {
+		StudentGrade studentGrade = new StudentGrade();
+		studentGrade.setGrade(studentGradeService.calculateGrade(studentId).toString());
+		return studentGrade;
+	}
+	
 
 }

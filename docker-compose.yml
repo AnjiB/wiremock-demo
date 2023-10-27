@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  wirmock_demo_api_service:
+    build: .
+    restart: on-failure
+    ports:
+      - 8080:8080
+    networks:
+      - mysql-db-net 
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/student?allowPublicKeyRetrieval=true&useSSL=false 
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: on-failure
+    ports:
+      - 3306:3306
+    networks:
+      - mysql-db-net  
+    environment:
+      MYSQL_DATABASE: student
+      MYSQL_ROOT_PASSWORD: wiremock-demo
+networks:
+  mysql-db-net:
