@@ -1,0 +1,170 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /student/{rollNum}:
+    get:
+      tags:
+        - student-controller
+      operationId: getStudent
+      parameters:
+        - name: rollNum
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Student'
+    put:
+      tags:
+        - student-controller
+      operationId: update
+      parameters:
+        - name: rollNum
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+    delete:
+      tags:
+        - student-controller
+      operationId: delete
+      parameters:
+        - name: rollNum
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /student:
+    get:
+      tags:
+        - student-controller
+      operationId: getAllStudents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+    post:
+      tags:
+        - student-controller
+      operationId: saveStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+  /marks:
+    post:
+      tags:
+        - students-marks-controller
+      operationId: saveMarks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentMarks'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentMarks'
+  /grade:
+    get:
+      tags:
+        - student-controller
+      operationId: getGrade
+      parameters:
+        - name: studentId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentGrade'
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int64
+        rollNumber:
+          type: integer
+          format: int64
+        name:
+          type: string
+        message:
+          type: string
+    StudentMarks:
+      type: object
+      properties:
+        marksId:
+          type: integer
+          format: int64
+        student:
+          $ref: '#/components/schemas/Student'
+        maths:
+          type: number
+          format: double
+        science:
+          type: number
+          format: double
+        english:
+          type: number
+          format: double
+    StudentGrade:
+      type: object
+      properties:
+        grade:
+          type: string
