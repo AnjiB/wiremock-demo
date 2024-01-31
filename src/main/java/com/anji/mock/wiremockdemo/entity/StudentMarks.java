@@ -18,18 +18,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StudentMarks {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long marksId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long marksId;
 
-	@OneToOne
-	@JoinColumn(name = "studentId")
-	private Student student;
+  @OneToOne
+  @JoinColumn(name = "studentId")
+  private Student student;
 
-	private Double maths;
+  private Double maths;
 
-	private Double science;
+  private Double science;
 
-	private Double english;
+  private Double english;
 
 }

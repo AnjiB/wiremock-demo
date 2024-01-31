@@ -20,13 +20,13 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include. NON_NULL)
 public class Student {
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
-	
+
     private Long rollNumber;
-    
+
     private String name;
-    
+
     private String message;
 }
