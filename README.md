@@ -10,13 +10,7 @@ Read https://medium.com/@boddupally.anji/mocking-in-test-automation-ecc0a06ff4d0
 
 ```
 docker run \
-  --name anji \
-  -p 3306:3306 \
-  -e MYSQL_ROOT_PASSWORD=wiremock-demo \
-  -e MYSQL_DATABASE=student \
-  -v $(pwd)/src/test/resources/testdata/student_test_data.sql:/docker-entrypoint-initdb.d/student_test_data.sql \
-  -d mysql:latestdocker run \
-  --name anji \
+  --name my-mysql \
   -p 3306:3306 \
   -e MYSQL_ROOT_PASSWORD=wiremock-demo \
   -e MYSQL_DATABASE=student \
